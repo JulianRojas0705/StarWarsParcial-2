@@ -14,7 +14,6 @@ public class MenuController : MonoBehaviour
     public TMP_InputField edadInput;          // Campo para ingresar edad
     public TMP_InputField correoInput;        // Campo para ingresar correo
     public TMP_InputField ciudadInput;        // Campo para ingresar ciudad
-    public TMP_InputField experienciaInput;   // Campo para ingresar la experiencia en el evento
 
     [Header("Audio")]
     public AudioSource musicaMenu;
@@ -111,8 +110,7 @@ public class MenuController : MonoBehaviour
                !string.IsNullOrEmpty(apellidoInput.text) &&
                !string.IsNullOrEmpty(edadInput.text) &&
                !string.IsNullOrEmpty(correoInput.text) &&
-               !string.IsNullOrEmpty(ciudadInput.text) &&
-               !string.IsNullOrEmpty(experienciaInput.text);
+               !string.IsNullOrEmpty(ciudadInput.text);
     }
 
     // Función para guardar los datos de los usuarios en JSON
@@ -125,8 +123,7 @@ public class MenuController : MonoBehaviour
             apellido = apellidoInput.text,
             edad = edadInput.text,
             correo = correoInput.text,
-            ciudad = ciudadInput.text,
-            experiencia = experienciaInput.text
+            ciudad = ciudadInput.text
         };
 
         // Leer los datos existentes si el archivo JSON ya existe
@@ -164,7 +161,6 @@ public class MenuController : MonoBehaviour
         public string edad;
         public string correo;
         public string ciudad;
-        public string experiencia;
     }
 
     // Clase auxiliar para envolver la lista de usuarios
