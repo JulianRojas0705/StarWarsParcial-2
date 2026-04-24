@@ -1,124 +1,109 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
 
 public class BattleManager : MonoBehaviour
 {
-    [Header("Image Targets")]
-    [Tooltip("Arrastra aquí el GameObject del primer Image Target")]
-    public ObserverBehaviour fighter1Target;
+    [System.Serializable]
+    public class Fighter
+    {
+        public string name;
+        public ObserverBehaviour target;
+        public Animator animator;
+        [HideInInspector] public bool isTracked = false;
+    }
 
-    [Tooltip("Arrastra aquí el GameObject del segundo Image Target")]
-    public ObserverBehaviour fighter2Target;
+    [Header("Configura los 4 personajes")]
+    public Fighter[] fighters = new Fighter[4];
 
-    [Header("Animadores de los personajes 3D")]
-    [Tooltip("Animator del personaje hijo del Fighter 1")]
-    public Animator fighter1Animator;
-
-    [Tooltip("Animator del personaje hijo del Fighter 2")]
-    public Animator fighter2Animator;
-
-    [Header("Nombres exactos de los estados en el Animator")]
-    [Tooltip("Nombre exacto del estado Idle en el Animator Controller")]
-    public string idleStateName = "Breathing Idle";
-
-    [Header("Configuración de animaciones")]
-    [Tooltip("Nombre del trigger de ataque Fighter 1")]
-    public string fighter1AttackTrigger = "Attack";
-
-    [Tooltip("Nombre del trigger de ataque Fighter 2")]
-    public string fighter2AttackTrigger = "Attack";
-
-    [Tooltip("Nombre del trigger de victoria")]
-    public string victoryTrigger = "Victory";
-
-    [Tooltip("Nombre del trigger de derrota")]
-    public string defeatTrigger = "Defeat";
-
-    [Header("Configuración de pelea")]
-    [Tooltip("Tiempo en segundos entre cada intercambio de golpes")]
+    [Header("Configuración de batalla")]
+    [Tooltip("Segundos entre cada ataque")]
     public float attackInterval = 2.0f;
 
-    [Tooltip("Número de rondas antes de decidir un ganador")]
+    [Tooltip("Número de rondas antes de decidir ganador")]
     public int totalRounds = 3;
 
-    // Estado interno
+    // Triggers — iguales en todos los Animators
+    private const string TRIGGER_ATTACK = "Attack";
+    private const string TRIGGER_VICTORY = "Victory";
+    private const string TRIGGER_DEFEAT = "Defeat";
+    private const string TRIGGER_IDLE = "Idle";
+    private const string STATE_IDLE = "Breathing Idle";
+
     private bool isBattleActive = false;
-    private bool fighter1Tracked = false;
-    private bool fighter2Tracked = false;
-    private int currentRound = 0;
     private Coroutine battleCoroutine;
+
+    // ─── INIT ────────────────────────────────────────────────────────────────
 
     void Start()
     {
-        if (fighter1Target != null)
-            fighter1Target.OnTargetStatusChanged += OnFighter1StatusChanged;
-        else
-            Debug.LogError("BattleManager: fighter1Target no está asignado.");
-
-        if (fighter2Target != null)
-            fighter2Target.OnTargetStatusChanged += OnFighter2StatusChanged;
-        else
-            Debug.LogError("BattleManager: fighter2Target no está asignado.");
+        foreach (var f in fighters)
+        {
+            if (f.target != null)
+            {
+                var captured = f; // closure
+                f.target.OnTargetStatusChanged += (behaviour, status) =>
+                {
+                    captured.isTracked = (status.Status == Status.TRACKED ||
+                                          status.Status == Status.EXTENDED_TRACKED);
+                    Debug.Log($"{captured.name} tracked: {captured.isTracked}");
+                    EvaluateBattleState();
+                };
+            }
+            else
+            {
+                Debug.LogWarning($"BattleManager: target de '{f.name}' no está asignado.");
+            }
+        }
     }
 
-    void OnDestroy()
-    {
-        if (fighter1Target != null)
-            fighter1Target.OnTargetStatusChanged -= OnFighter1StatusChanged;
-
-        if (fighter2Target != null)
-            fighter2Target.OnTargetStatusChanged -= OnFighter2StatusChanged;
-    }
-
-    // ─── Callbacks de Vuforia ────────────────────────────────────────────────
-
-    private void OnFighter1StatusChanged(ObserverBehaviour behaviour, TargetStatus status)
-    {
-        fighter1Tracked = (status.Status == Status.TRACKED ||
-                           status.Status == Status.EXTENDED_TRACKED);
-        Debug.Log($"Fighter 1 tracking: {fighter1Tracked}");
-        EvaluateBattleState();
-    }
-
-    private void OnFighter2StatusChanged(ObserverBehaviour behaviour, TargetStatus status)
-    {
-        fighter2Tracked = (status.Status == Status.TRACKED ||
-                           status.Status == Status.EXTENDED_TRACKED);
-        Debug.Log($"Fighter 2 tracking: {fighter2Tracked}");
-        EvaluateBattleState();
-    }
-
-    // ─── Lógica principal ────────────────────────────────────────────────────
+    // ─── LÓGICA PRINCIPAL ────────────────────────────────────────────────────
 
     private void EvaluateBattleState()
     {
-        bool bothTracked = fighter1Tracked && fighter2Tracked;
+        List<Fighter> visibles = GetTrackedFighters();
 
-        if (bothTracked && !isBattleActive)
-            StartBattle();
-        else if (!bothTracked && isBattleActive)
+        if (visibles.Count >= 2 && !isBattleActive)
+        {
+            StartBattle(visibles);
+        }
+        else if (visibles.Count < 2 && isBattleActive)
+        {
             StopBattle();
+        }
     }
 
-    private void StartBattle()
+    private List<Fighter> GetTrackedFighters()
+    {
+        List<Fighter> list = new List<Fighter>();
+        foreach (var f in fighters)
+            if (f.isTracked) list.Add(f);
+        return list;
+    }
+
+    // ─── BATALLA ────────────────────────────────────────────────────────────
+
+    private void StartBattle(List<Fighter> visibles)
     {
         isBattleActive = true;
-        currentRound = 0;
-        Debug.Log("¡BATALLA INICIADA!");
+        Debug.Log($"¡BATALLA INICIADA! {visibles[0].name} vs {visibles[1].name}");
 
-        ResetAnimators();
+        // Resetear todos a idle
+        foreach (var f in fighters)
+            ResetToIdle(f);
 
         if (battleCoroutine != null)
             StopCoroutine(battleCoroutine);
 
-        battleCoroutine = StartCoroutine(BattleSequence());
+        // Solo pelean los 2 primeros visibles
+        battleCoroutine = StartCoroutine(BattleSequence(visibles[0], visibles[1]));
     }
 
     private void StopBattle()
     {
         isBattleActive = false;
-        Debug.Log("Batalla detenida.");
+        Debug.Log("Batalla detenida — menos de 2 tarjetas visibles.");
 
         if (battleCoroutine != null)
         {
@@ -126,108 +111,77 @@ public class BattleManager : MonoBehaviour
             battleCoroutine = null;
         }
 
-        ResetAnimators();
+        foreach (var f in fighters)
+            ResetToIdle(f);
     }
 
-    // ─── Secuencia de pelea ──────────────────────────────────────────────────
-
-    private IEnumerator BattleSequence()
+    private IEnumerator BattleSequence(Fighter f1, Fighter f2)
     {
         yield return new WaitForSeconds(1.0f);
 
-        while (isBattleActive && currentRound < totalRounds)
+        for (int round = 1; round <= totalRounds; round++)
         {
-            currentRound++;
-            Debug.Log($"Ronda {currentRound} de {totalRounds}");
+            if (!isBattleActive) yield break;
 
-            // Fighter 1 ataca
-            TriggerAttack(fighter1Animator, fighter1AttackTrigger, "Fighter 1");
+            Debug.Log($"Ronda {round}/{totalRounds}");
+
+            // F1 ataca
+            TriggerAnim(f1, TRIGGER_ATTACK);
             yield return new WaitForSeconds(attackInterval * 0.5f);
 
-            // Fighter 2 contraataca
-            TriggerAttack(fighter2Animator, fighter2AttackTrigger, "Fighter 2");
+            // F2 contraataca
+            TriggerAnim(f2, TRIGGER_ATTACK);
             yield return new WaitForSeconds(attackInterval * 0.5f);
         }
 
         if (isBattleActive)
         {
             yield return new WaitForSeconds(0.5f);
-            DecideWinner();
+            DecideWinner(f1, f2);
         }
     }
 
-    private void TriggerAttack(Animator animator, string trigger, string fighterName)
+    private void DecideWinner(Fighter f1, Fighter f2)
     {
-        if (animator == null) return;
+        bool f1Wins = Random.value > 0.5f;
+        Fighter winner = f1Wins ? f1 : f2;
+        Fighter loser = f1Wins ? f2 : f1;
 
-        animator.ResetTrigger(victoryTrigger);
-        animator.ResetTrigger(defeatTrigger);
-        animator.SetTrigger(trigger);
+        TriggerAnim(winner, TRIGGER_VICTORY);
+        TriggerAnim(loser, TRIGGER_DEFEAT);
 
-        Debug.Log($"{fighterName} ataca!");
-    }
-
-    private void DecideWinner()
-    {
-        bool fighter1Wins = Random.value > 0.5f;
-
-        if (fighter1Wins)
-        {
-            fighter1Animator?.SetTrigger(victoryTrigger);
-            fighter2Animator?.SetTrigger(defeatTrigger);
-            Debug.Log("¡Fighter 1 gana!");
-        }
-        else
-        {
-            fighter2Animator?.SetTrigger(victoryTrigger);
-            fighter1Animator?.SetTrigger(defeatTrigger);
-            Debug.Log("¡Fighter 2 gana!");
-        }
+        Debug.Log($"¡{winner.name} GANA contra {loser.name}!");
 
         isBattleActive = false;
-
-        // Volver al Idle después de 3 segundos
-        StartCoroutine(ReturnToIdleAfterVictory());
+        StartCoroutine(ReturnToIdleAfterBattle());
     }
 
-    private IEnumerator ReturnToIdleAfterVictory()
+    private IEnumerator ReturnToIdleAfterBattle()
     {
         yield return new WaitForSeconds(3.0f);
-        ResetAnimators();
+        foreach (var f in fighters)
+            ResetToIdle(f);
     }
 
-    // ─── Reset ───────────────────────────────────────────────────────────────
+    // ─── HELPERS ─────────────────────────────────────────────────────────────
 
-    private void ResetAnimators()
+    private void TriggerAnim(Fighter f, string trigger)
     {
-        if (fighter1Animator != null)
-        {
-            fighter1Animator.ResetTrigger(fighter1AttackTrigger);
-            fighter1Animator.ResetTrigger(victoryTrigger);
-            fighter1Animator.ResetTrigger(defeatTrigger);
-            fighter1Animator.Play(idleStateName);
-        }
-
-        if (fighter2Animator != null)
-        {
-            fighter2Animator.ResetTrigger(fighter2AttackTrigger);
-            fighter2Animator.ResetTrigger(victoryTrigger);
-            fighter2Animator.ResetTrigger(defeatTrigger);
-            fighter2Animator.Play(idleStateName);
-        }
+        if (f.animator == null) return;
+        f.animator.ResetTrigger(TRIGGER_ATTACK);
+        f.animator.ResetTrigger(TRIGGER_VICTORY);
+        f.animator.ResetTrigger(TRIGGER_DEFEAT);
+        f.animator.SetTrigger(trigger);
+        Debug.Log($"{f.name} → {trigger}");
     }
 
-    // ─── API pública ─────────────────────────────────────────────────────────
-
-    public void ManualAttackFighter1()
+    private void ResetToIdle(Fighter f)
     {
-        if (fighter1Animator != null)
-            TriggerAttack(fighter1Animator, fighter1AttackTrigger, "Fighter 1 (manual)");
-    }
-
-    public void ManualAttackFighter2()
-    {
-        if (fighter2Animator != null)
-            TriggerAttack(fighter2Animator, fighter2AttackTrigger, "Fighter 2 (manual)");
+        if (f.animator == null) return;
+        f.animator.ResetTrigger(TRIGGER_ATTACK);
+        f.animator.ResetTrigger(TRIGGER_VICTORY);
+        f.animator.ResetTrigger(TRIGGER_DEFEAT);
+        f.animator.ResetTrigger(TRIGGER_IDLE);
+        f.animator.Play(STATE_IDLE);
     }
 }
