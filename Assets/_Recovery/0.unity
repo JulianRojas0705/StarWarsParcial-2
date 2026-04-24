@@ -164,7 +164,6 @@ GameObject:
   - component: {fileID: 99720258}
   - component: {fileID: 99720257}
   - component: {fileID: 99720260}
-  - component: {fileID: 99720261}
   m_Layer: 0
   m_Name: Clone
   m_TagString: Untagged
@@ -231,18 +230,18 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: clone_letras_100
+  mTrackableName: clone_REAL_2
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 0.5625
+  mAspectRatio: 1.7777777
   mImageTargetType: 3
-  mWidth: 0.19999999
-  mHeight: 0.1125
-  mRuntimeTexture: {fileID: 2800000, guid: 58570ffb57e621246a9ece527249b66e, type: 3}
+  mWidth: 0.1125
+  mHeight: 0.19999999
+  mRuntimeTexture: {fileID: 2800000, guid: 06649a9859f3cc34693ca4bf8910e988, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 99720261}
+  mPreview: {fileID: 0}
 --- !u!4 &99720259
 Transform:
   m_ObjectHideFlags: 0
@@ -282,25 +281,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &99720261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 99720255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
-  mObserverBehaviour: {fileID: 99720258}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: clone_letras_100
-  mDatasetName: 
-  mCastedBehaviour: {fileID: 99720258}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!1 &199352350
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +293,6 @@ GameObject:
   - component: {fileID: 199352353}
   - component: {fileID: 199352352}
   - component: {fileID: 199352356}
-  - component: {fileID: 199352357}
   m_Layer: 0
   m_Name: Rey
   m_TagString: Untagged
@@ -380,18 +359,18 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: Rey_letras_100
+  mTrackableName: Rey_REAL_2
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 0.5625
+  mAspectRatio: 1.7777778
   mImageTargetType: 3
-  mWidth: 0.20000002
-  mHeight: 0.11250001
-  mRuntimeTexture: {fileID: 2800000, guid: 69ae9239302ceda40a458d75220b5d8a, type: 3}
+  mWidth: 0.11250001
+  mHeight: 0.20000002
+  mRuntimeTexture: {fileID: 2800000, guid: 4dbda36657e9bfe4a9ce70383b8108d2, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 199352357}
+  mPreview: {fileID: 0}
 --- !u!4 &199352354
 Transform:
   m_ObjectHideFlags: 0
@@ -430,25 +409,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &199352357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199352350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
-  mObserverBehaviour: {fileID: 199352353}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: Rey_letras_100
-  mDatasetName: 
-  mCastedBehaviour: {fileID: 199352353}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!21 &286363978
 Material:
   serializedVersion: 8
@@ -1883,7 +1843,6 @@ GameObject:
   - component: {fileID: 1275142017}
   - component: {fileID: 1275142016}
   - component: {fileID: 1275142019}
-  - component: {fileID: 1275142020}
   m_Layer: 0
   m_Name: Yoda
   m_TagString: Untagged
@@ -1950,18 +1909,18 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: Yoda_letras_100
+  mTrackableName: Yoda_REAL_3
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 0.5625
+  mAspectRatio: 1.7777778
   mImageTargetType: 3
-  mWidth: 0.20000003
-  mHeight: 0.11250002
-  mRuntimeTexture: {fileID: 2800000, guid: 17f35165b32e46e489d07b79973543ef, type: 3}
+  mWidth: 0.11250002
+  mHeight: 0.20000003
+  mRuntimeTexture: {fileID: 2800000, guid: 0efcb80405f11664f8530ceefd2c6fd1, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1275142020}
+  mPreview: {fileID: 0}
 --- !u!4 &1275142018
 Transform:
   m_ObjectHideFlags: 0
@@ -2000,25 +1959,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1275142020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275142014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
-  mObserverBehaviour: {fileID: 1275142017}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: Yoda_letras_100
-  mDatasetName: 
-  mCastedBehaviour: {fileID: 1275142017}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!1 &1473771843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2342,7 +2282,6 @@ GameObject:
   - component: {fileID: 1955239692}
   - component: {fileID: 1955239691}
   - component: {fileID: 1955239695}
-  - component: {fileID: 1955239696}
   m_Layer: 0
   m_Name: Anakin
   m_TagString: Untagged
@@ -2409,18 +2348,18 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: Anakin_letras_100
+  mTrackableName: Nakin_real_2
   mInitializedInEditor: 1
   mDataSetPath: 
-  mAspectRatio: 0.5625
+  mAspectRatio: 1.7777777
   mImageTargetType: 3
-  mWidth: 0.19999999
-  mHeight: 0.1125
-  mRuntimeTexture: {fileID: 2800000, guid: 680eea4d564fcf64987e02e877176742, type: 3}
+  mWidth: 0.1125
+  mHeight: 0.19999999
+  mRuntimeTexture: {fileID: 2800000, guid: 733c07c040a24fc428815eab0ba6739e, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1955239696}
+  mPreview: {fileID: 0}
 --- !u!4 &1955239693
 Transform:
   m_ObjectHideFlags: 0
@@ -2460,25 +2399,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1955239696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1955239690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
-  mObserverBehaviour: {fileID: 1955239692}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: Anakin_letras_100
-  mDatasetName: 
-  mCastedBehaviour: {fileID: 1955239692}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!43 &2002119621
 Mesh:
   m_ObjectHideFlags: 0
@@ -2981,22 +2901,22 @@ PrefabInstance:
     - target: {fileID: 75631082627188321, guid: bf7365b6f7583a04ca1059ae11073177,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 75631082627188321, guid: bf7365b6f7583a04ca1059ae11073177,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 75631082627188321, guid: bf7365b6f7583a04ca1059ae11073177,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 75631082627188321, guid: bf7365b6f7583a04ca1059ae11073177,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 75631082627188321, guid: bf7365b6f7583a04ca1059ae11073177,
         type: 3}
@@ -3006,7 +2926,7 @@ PrefabInstance:
     - target: {fileID: 75631082627188321, guid: bf7365b6f7583a04ca1059ae11073177,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 75631082627188321, guid: bf7365b6f7583a04ca1059ae11073177,
         type: 3}
