@@ -18,8 +18,16 @@ EditorBuildSettings:
     path: Assets/Scenes/RVprimero.unity
     guid: 68be6d62bd1d1be47b00b61aae858cdd
   m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 84525fd8f8128944581926b5fe1ec391,
+      type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 1f0b891ba6b2deb41a12d33d8d9557b2,
       type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b,
       type: 3}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: b42983ed9f2652742aec4d0ed7516203,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 509da26d1503cb348964195ada2daeb3,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 85c7c143cd378944e9ccdbd4389b3114,
+      type: 2}
   m_UseUCBPForAssetBundles: 0
