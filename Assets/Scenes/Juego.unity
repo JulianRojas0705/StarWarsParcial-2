@@ -200,14 +200,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: clone_REAL
+  mTrackableName: Clone_definitivo
   mInitializedInEditor: 1
   mDataSetPath: 
   mAspectRatio: 1.75
   mImageTargetType: 3
   mWidth: 0.11428571
   mHeight: 0.19999999
-  mRuntimeTexture: {fileID: 2800000, guid: 664f4320cae126f429e3912ef2ed9535, type: 3}
+  mRuntimeTexture: {fileID: 2800000, guid: 35030fb2aa93b284c9080505fd92c8fe, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
   mObserverBehaviour: {fileID: 99720258}
   mHiddenRoot: {fileID: 0}
-  mTargetName: clone_REAL
+  mTargetName: Clone_definitivo
   mDatasetName: 
   mCastedBehaviour: {fileID: 99720258}
   mMeshFilter: {fileID: 0}
@@ -386,14 +386,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: Rey_REAL
+  mTrackableName: Rey_definitivo
   mInitializedInEditor: 1
   mDataSetPath: 
   mAspectRatio: 1.75
   mImageTargetType: 3
   mWidth: 0.11428573
   mHeight: 0.20000003
-  mRuntimeTexture: {fileID: 2800000, guid: 3346aeb04ad8ac34a9822b04593f6af8, type: 3}
+  mRuntimeTexture: {fileID: 2800000, guid: e316f8ed05730c449b95638f6428f560, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -486,7 +486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
   mObserverBehaviour: {fileID: 199352353}
   mHiddenRoot: {fileID: 0}
-  mTargetName: Rey_REAL
+  mTargetName: Rey_definitivo
   mDatasetName: 
   mCastedBehaviour: {fileID: 199352353}
   mMeshFilter: {fileID: 0}
@@ -2096,14 +2096,14 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: Anakin_REAL
+  mTrackableName: Anakin_definitivo
   mInitializedInEditor: 1
   mDataSetPath: 
   mAspectRatio: 1.75
   mImageTargetType: 3
   mWidth: 0.11428571
   mHeight: 0.19999999
-  mRuntimeTexture: {fileID: 2800000, guid: 93abeeaca81cf3242954f9349d203b65, type: 3}
+  mRuntimeTexture: {fileID: 2800000, guid: ed36740ebd0a46e4dbb4a3f4c1912efd, type: 3}
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
@@ -2196,7 +2196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
   mObserverBehaviour: {fileID: 1955239692}
   mHiddenRoot: {fileID: 0}
-  mTargetName: Anakin_REAL
+  mTargetName: Anakin_definitivo
   mDatasetName: 
   mCastedBehaviour: {fileID: 1955239692}
   mMeshFilter: {fileID: 0}
