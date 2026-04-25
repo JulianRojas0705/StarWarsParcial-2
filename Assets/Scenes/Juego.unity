@@ -547,6 +547,7 @@ GameObject:
   - component: {fileID: 199352359}
   - component: {fileID: 199352358}
   - component: {fileID: 199352360}
+  - component: {fileID: 199352361}
   m_Layer: 0
   m_Name: Rey
   m_TagString: Untagged
@@ -719,6 +720,19 @@ MonoBehaviour:
   mCastedBehaviour: {fileID: 199352353}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
+--- !u!114 &199352361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199352350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38b21fe8d7f2e2428e5fe7ff12db3e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatsPanel
+  statsCanvas: {fileID: 2078482517}
 --- !u!1 &617371059
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,7 +853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &682678857
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2056,7 +2070,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1205615129
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2155,6 +2169,7 @@ GameObject:
   - component: {fileID: 1275142022}
   - component: {fileID: 1275142021}
   - component: {fileID: 1275142023}
+  - component: {fileID: 1275142024}
   m_Layer: 0
   m_Name: Yoda
   m_TagString: Untagged
@@ -2327,6 +2342,19 @@ MonoBehaviour:
   mCastedBehaviour: {fileID: 1275142017}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
+--- !u!114 &1275142024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275142014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38b21fe8d7f2e2428e5fe7ff12db3e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatsPanel
+  statsCanvas: {fileID: 682678856}
 --- !u!1 &1473771843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2958,6 +2986,7 @@ GameObject:
   - component: {fileID: 1955239698}
   - component: {fileID: 1955239697}
   - component: {fileID: 1955239699}
+  - component: {fileID: 1955239700}
   m_Layer: 0
   m_Name: Anakin
   m_TagString: Untagged
@@ -3130,6 +3159,19 @@ MonoBehaviour:
   mCastedBehaviour: {fileID: 1955239692}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
+--- !u!114 &1955239700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955239690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38b21fe8d7f2e2428e5fe7ff12db3e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatsPanel
+  statsCanvas: {fileID: 2042904041}
 --- !u!1 &2042904041
 GameObject:
   m_ObjectHideFlags: 0
@@ -3148,7 +3190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2042904042
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3256,7 +3298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2078482518
 RectTransform:
   m_ObjectHideFlags: 0
