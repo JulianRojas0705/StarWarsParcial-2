@@ -165,7 +165,7 @@ public class BattleManager : MonoBehaviour
         victoryPanel.SetActive(true);
 
         if (victoryText != null)
-            victoryText.text = $"⚔ VICTORIA ⚔\n\n{winnerName}\nvence a\n{loserName}";
+            victoryText.text = $" VICTORIA {winnerName}";
     }
 
     private IEnumerator HidePanelAfterSeconds(float seconds)
