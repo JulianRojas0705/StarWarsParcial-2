@@ -546,8 +546,8 @@ GameObject:
   - component: {fileID: 199352356}
   - component: {fileID: 199352359}
   - component: {fileID: 199352358}
-  - component: {fileID: 199352360}
   - component: {fileID: 199352361}
+  - component: {fileID: 199352362}
   m_Layer: 0
   m_Name: Rey
   m_TagString: Untagged
@@ -625,7 +625,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 199352360}
+  mPreview: {fileID: 199352362}
 --- !u!4 &199352354
 Transform:
   m_ObjectHideFlags: 0
@@ -701,7 +701,20 @@ MonoBehaviour:
   characterAnimator: {fileID: 745594124}
   attackTrigger: Attack
   tapRadius: 200
---- !u!114 &199352360
+--- !u!114 &199352361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199352350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38b21fe8d7f2e2428e5fe7ff12db3e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatsPanel
+  statsCanvas: {fileID: 2078482517}
+--- !u!114 &199352362
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -720,19 +733,6 @@ MonoBehaviour:
   mCastedBehaviour: {fileID: 199352353}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
---- !u!114 &199352361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199352350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e38b21fe8d7f2e2428e5fe7ff12db3e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatsPanel
-  statsCanvas: {fileID: 2078482517}
 --- !u!1 &617371059
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,7 +871,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.013, y: 0.158}
+  m_AnchoredPosition: {x: -0.013, y: 0.2104}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &682678858
@@ -2168,8 +2168,8 @@ GameObject:
   - component: {fileID: 1275142019}
   - component: {fileID: 1275142022}
   - component: {fileID: 1275142021}
-  - component: {fileID: 1275142023}
   - component: {fileID: 1275142024}
+  - component: {fileID: 1275142025}
   m_Layer: 0
   m_Name: Yoda
   m_TagString: Untagged
@@ -2247,7 +2247,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1275142023}
+  mPreview: {fileID: 1275142025}
 --- !u!4 &1275142018
 Transform:
   m_ObjectHideFlags: 0
@@ -2323,7 +2323,20 @@ MonoBehaviour:
   characterAnimator: {fileID: 2044746465}
   attackTrigger: Attack
   tapRadius: 200
---- !u!114 &1275142023
+--- !u!114 &1275142024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275142014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38b21fe8d7f2e2428e5fe7ff12db3e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatsPanel
+  statsCanvas: {fileID: 682678856}
+--- !u!114 &1275142025
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2342,19 +2355,6 @@ MonoBehaviour:
   mCastedBehaviour: {fileID: 1275142017}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
---- !u!114 &1275142024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275142014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e38b21fe8d7f2e2428e5fe7ff12db3e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatsPanel
-  statsCanvas: {fileID: 682678856}
 --- !u!1 &1473771843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2713,15 +2713,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.7058824}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 2de84d872c917b6459dba842dfc1d55d, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2871,10 +2871,8 @@ MonoBehaviour:
     target: {fileID: 199352353}
     animator: {fileID: 745594124}
     isTracked: 0
-  battleDuration: 7
   attackInterval: 2
-  victoryPanel: {fileID: 1606143137}
-  victoryText: {fileID: 188774704}
+  totalRounds: 3
 --- !u!4 &1818026944
 Transform:
   m_ObjectHideFlags: 0
@@ -2985,8 +2983,8 @@ GameObject:
   - component: {fileID: 1955239695}
   - component: {fileID: 1955239698}
   - component: {fileID: 1955239697}
-  - component: {fileID: 1955239699}
   - component: {fileID: 1955239700}
+  - component: {fileID: 1955239701}
   m_Layer: 0
   m_Name: Anakin
   m_TagString: Untagged
@@ -3064,7 +3062,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1955239699}
+  mPreview: {fileID: 1955239701}
 --- !u!4 &1955239693
 Transform:
   m_ObjectHideFlags: 0
@@ -3140,7 +3138,20 @@ MonoBehaviour:
   characterAnimator: {fileID: 1813632773}
   attackTrigger: Attack
   tapRadius: 200
---- !u!114 &1955239699
+--- !u!114 &1955239700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955239690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38b21fe8d7f2e2428e5fe7ff12db3e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatsPanel
+  statsCanvas: {fileID: 2042904041}
+--- !u!114 &1955239701
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3159,19 +3170,6 @@ MonoBehaviour:
   mCastedBehaviour: {fileID: 1955239692}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
---- !u!114 &1955239700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1955239690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e38b21fe8d7f2e2428e5fe7ff12db3e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatsPanel
-  statsCanvas: {fileID: 2042904041}
 --- !u!1 &2042904041
 GameObject:
   m_ObjectHideFlags: 0
@@ -3198,7 +3196,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042904041}
-  m_LocalRotation: {x: -0, y: -0.99942094, z: -0, w: -0.034027513}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.021}
   m_LocalScale: {x: 0.0015, y: 0.0015, z: 0.0015}
   m_ConstrainProportionsScale: 1
@@ -3208,7 +3206,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.013, y: 0.226}
+  m_AnchoredPosition: {x: 0.0051, y: 0.226}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2042904043

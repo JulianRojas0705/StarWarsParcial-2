@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
-using TMPro;
 
 public class BattleManager : MonoBehaviour
 {
@@ -19,20 +18,17 @@ public class BattleManager : MonoBehaviour
     public Fighter[] fighters = new Fighter[4];
 
     [Header("Configuración de batalla")]
-    [Tooltip("Duración total de la batalla en segundos")]
-    public float battleDuration = 10f;
-
     [Tooltip("Segundos entre cada ataque")]
     public float attackInterval = 2.0f;
 
-    [Header("Panel de victoria")]
-    public GameObject victoryPanel;
-    public TMP_Text victoryText;
+    [Tooltip("Número de rondas antes de decidir ganador")]
+    public int totalRounds = 3;
 
-    // Triggers
+    // Triggers — iguales en todos los Animators
     private const string TRIGGER_ATTACK = "Attack";
     private const string TRIGGER_VICTORY = "Victory";
     private const string TRIGGER_DEFEAT = "Defeat";
+    private const string TRIGGER_IDLE = "Idle";
     private const string STATE_IDLE = "Breathing Idle";
 
     private bool isBattleActive = false;
@@ -42,20 +38,22 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
-        if (victoryPanel != null)
-            victoryPanel.SetActive(false);
-
         foreach (var f in fighters)
         {
             if (f.target != null)
             {
-                var captured = f;
+                var captured = f; // closure
                 f.target.OnTargetStatusChanged += (behaviour, status) =>
                 {
                     captured.isTracked = (status.Status == Status.TRACKED ||
                                           status.Status == Status.EXTENDED_TRACKED);
+                    Debug.Log($"{captured.name} tracked: {captured.isTracked}");
                     EvaluateBattleState();
                 };
+            }
+            else
+            {
+                Debug.LogWarning($"BattleManager: target de '{f.name}' no está asignado.");
             }
         }
     }
@@ -67,41 +65,45 @@ public class BattleManager : MonoBehaviour
         List<Fighter> visibles = GetTrackedFighters();
 
         if (visibles.Count >= 2 && !isBattleActive)
+        {
             StartBattle(visibles);
+        }
         else if (visibles.Count < 2 && isBattleActive)
+        {
             StopBattle();
+        }
     }
 
     private List<Fighter> GetTrackedFighters()
     {
         List<Fighter> list = new List<Fighter>();
-        foreach (var f in fighters)
+        foreach (var f in fighters) 
             if (f.isTracked) list.Add(f);
         return list;
     }
 
-    // ─── BATALLA ─────────────────────────────────────────────────────────────
+    // ─── BATALLA ────────────────────────────────────────────────────────────
 
     private void StartBattle(List<Fighter> visibles)
     {
         isBattleActive = true;
+        Debug.Log($"¡BATALLA INICIADA! {visibles[0].name} vs {visibles[1].name}");
 
-        if (victoryPanel != null)
-            victoryPanel.SetActive(false);
-
+        // Resetear todos a idle
         foreach (var f in fighters)
             ResetToIdle(f);
 
         if (battleCoroutine != null)
             StopCoroutine(battleCoroutine);
 
+        // Solo pelean los 2 primeros visibles
         battleCoroutine = StartCoroutine(BattleSequence(visibles[0], visibles[1]));
-        Debug.Log($"¡BATALLA! {visibles[0].name} vs {visibles[1].name} — {battleDuration}s");
     }
 
     private void StopBattle()
     {
         isBattleActive = false;
+        Debug.Log("Batalla detenida — menos de 2 tarjetas visibles.");
 
         if (battleCoroutine != null)
         {
@@ -109,36 +111,34 @@ public class BattleManager : MonoBehaviour
             battleCoroutine = null;
         }
 
-        if (victoryPanel != null)
-            victoryPanel.SetActive(false);
-
         foreach (var f in fighters)
             ResetToIdle(f);
-
-        Debug.Log("Batalla detenida.");
     }
 
     private IEnumerator BattleSequence(Fighter f1, Fighter f2)
     {
         yield return new WaitForSeconds(1.0f);
 
-        float elapsed = 0f;
-
-        while (elapsed < battleDuration && isBattleActive)
+        for (int round = 1; round <= totalRounds; round++)
         {
-            TriggerAnim(f1, TRIGGER_ATTACK);
-            yield return new WaitForSeconds(attackInterval * 0.5f);
-            elapsed += attackInterval * 0.5f;
-
             if (!isBattleActive) yield break;
 
+            Debug.Log($"Ronda {round}/{totalRounds}");
+
+            // F1 ataca
+            TriggerAnim(f1, TRIGGER_ATTACK);
+            yield return new WaitForSeconds(attackInterval * 0.5f);
+
+            // F2 contraataca
             TriggerAnim(f2, TRIGGER_ATTACK);
             yield return new WaitForSeconds(attackInterval * 0.5f);
-            elapsed += attackInterval * 0.5f;
         }
 
         if (isBattleActive)
+        {
+            yield return new WaitForSeconds(0.5f);
             DecideWinner(f1, f2);
+        }
     }
 
     private void DecideWinner(Fighter f1, Fighter f2)
@@ -150,29 +150,15 @@ public class BattleManager : MonoBehaviour
         TriggerAnim(winner, TRIGGER_VICTORY);
         TriggerAnim(loser, TRIGGER_DEFEAT);
 
-        isBattleActive = false;
-        ShowVictoryPanel(winner.name, loser.name);
-        StartCoroutine(HidePanelAfterSeconds(5f));
-
         Debug.Log($"¡{winner.name} GANA!");
+
+        isBattleActive = false;
+        StartCoroutine(ReturnToIdleAfterBattle());
     }
 
-    // ─── PANEL DE VICTORIA ────────────────────────────────────────────────────
-
-    private void ShowVictoryPanel(string winnerName, string loserName)
+    private IEnumerator ReturnToIdleAfterBattle()
     {
-        if (victoryPanel == null) return;
-        victoryPanel.SetActive(true);
-
-        if (victoryText != null)
-            victoryText.text = $"⚔ VICTORIA ⚔\n\n{winnerName}\nvence a\n{loserName}";
-    }
-
-    private IEnumerator HidePanelAfterSeconds(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        if (victoryPanel != null)
-            victoryPanel.SetActive(false);
+        yield return new WaitForSeconds(3.0f);
         foreach (var f in fighters)
             ResetToIdle(f);
     }
@@ -186,6 +172,7 @@ public class BattleManager : MonoBehaviour
         f.animator.ResetTrigger(TRIGGER_VICTORY);
         f.animator.ResetTrigger(TRIGGER_DEFEAT);
         f.animator.SetTrigger(trigger);
+        Debug.Log($"{f.name} → {trigger}");
     }
 
     private void ResetToIdle(Fighter f)
@@ -194,6 +181,7 @@ public class BattleManager : MonoBehaviour
         f.animator.ResetTrigger(TRIGGER_ATTACK);
         f.animator.ResetTrigger(TRIGGER_VICTORY);
         f.animator.ResetTrigger(TRIGGER_DEFEAT);
+        f.animator.ResetTrigger(TRIGGER_IDLE);
         f.animator.Play(STATE_IDLE);
     }
 }
