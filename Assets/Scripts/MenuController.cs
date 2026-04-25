@@ -93,7 +93,7 @@ public class MenuController : MonoBehaviour
             GuardarDatos();
 
             // Llamada para iniciar la parte de RA o cargar la escena que sigue
-            SceneManager.LoadScene("RVprimero");  // Cambia el nombre de la escena según tu configuración
+            SceneManager.LoadScene("Juego");  // Cambia el nombre de la escena según tu configuración
         }
         else
         {
