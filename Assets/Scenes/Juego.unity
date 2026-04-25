@@ -2400,7 +2400,7 @@ MonoBehaviour:
   battleDuration: 10
   attackInterval: 2
   victoryPanel: {fileID: 1606143137}
-  victoryText: {fileID: 0}
+  victoryText: {fileID: 188774704}
 --- !u!4 &1818026944
 Transform:
   m_ObjectHideFlags: 0
